@@ -14,8 +14,23 @@ end
 vim.cmd('autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.vert,*.frag,*.mcpp,*mhpp,*ixx lua FormatBuffer()')
 
 
+-- add binaries installed by mason.nvim to path
+local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
+vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
+
+-------------------------------------- autocmds ------------------------------------------
+local autocmd = vim.api.nvim_create_autocmd
+
+-- dont list quickfix buffers
+autocmd("FileType", {
+  pattern = "qf",
+  callback = function()
+    vim.opt_local.buflisted = false
+  end,
+})
+
 -- use pwsh or powershell terminal in windows
-if vim.loop.os_uname() == "Window_NT" then
+if is_windows == 1 then
   -- Determine the appropriate shell (pwsh if available, otherwise powershell)
   local shell = vim.fn.executable('pwsh') == 1 and 'pwsh' or 'powershell'
 
