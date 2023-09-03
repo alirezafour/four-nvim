@@ -14,6 +14,7 @@ return {
     end,
   },
 
+  -- status bar on buttom
   {
     "nvim-lualine/lualine.nvim",
     dependencies = {
@@ -144,7 +145,10 @@ return {
 
   {
     "nvim-telescope/telescope.nvim",
-    dependencies = "nvim-treesitter/nvim-treesitter",
+    tag = "0.1.2",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
     cmd = "Telescope",
     opts = function()
       return require "configs.telescope"
@@ -154,9 +158,11 @@ return {
       telescope.setup(opts)
 
       -- load extensions
-      for _, ext in ipairs(opts.extensions_list) do
-        telescope.load_extension(ext)
-      end
+      -- if opts.extensions ~= nil then
+      --   for _, ext in ipairs(opts.extensions_list) do
+      --     telescope.load_extension(ext)
+      --   end
+      -- end
     end,
   },
 

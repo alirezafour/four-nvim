@@ -7,16 +7,6 @@ M.on_attach = function(_, bufnr)
     vim.keymap.set('n', key, action, { buffer = bufnr })
   end
 
-  -- setup keys
-  key("<leader>lr", vim.lsp.buf.rename)
-  key("<leader>la", vim.lsp.buf.code_action)
-
-  key("gd", vim.lsp.buf.definition)
-  key("gD", vim.lsp.buf.declaration)
-  key("gi", vim.lsp.buf.implementation)
-  key("<leader>lD", vim.lsp.buf.type_definition)
-
-  key("K", vim.lsp.buf.hover)
 
   -- formating
   vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
@@ -64,11 +54,11 @@ require("lspconfig").lua_ls.setup {
         globals = { "vim" },
       },
       workspace = {
-        library = {
-          [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-          [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
-          [vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy"] = true,
-        },
+        -- library = {
+        --   [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+        --   [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
+        --   [vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy"] = true,
+        -- },
         maxPreload = 100000,
         preloadFileSize = 10000,
       },
