@@ -3,6 +3,7 @@ return {
   -- gruvbox color theme
   {
     "ellisonleao/gruvbox.nvim",
+    lazy = false,
     priority = 1000,
     opts = function()
       return require "configs/gruvbox"
@@ -31,6 +32,7 @@ return {
   -- treesitter
   {
     "nvim-treesitter/nvim-treesitter",
+    event = "BufRead",
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     build = ":TSUpdate",
     opts = function()
@@ -41,7 +43,7 @@ return {
     end,
   },
 
-  -- lsp stuff
+  -- -- lsp stuff
   {
     "williamboman/mason.nvim",
     cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUninstall", "MasonUninstallAll", "MasonLog" },
@@ -54,20 +56,21 @@ return {
       vim.api.nvim_create_user_command("MasonInstallAll", function()
         vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
       end, {})
-
+  --
       vim.g.mason_binaries_list = opts.ensure_installed
-    end,
+     end,
   },
 
-  -- lspconfig
+  -- -- lspconfig
   {
     "neovim/nvim-lspconfig",
+    event = "BufRead",
     config = function()
       require "configs.lspconfig"
     end,
   },
-
-  -- load luasnips + cmp related in insert mode only
+  --
+  -- -- load luasnips + cmp related in insert mode only
   {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
@@ -114,7 +117,7 @@ return {
       require("cmp").setup(opts)
     end,
   },
-
+  --
   -- comment
   {
     "numToStr/Comment.nvim",
@@ -143,10 +146,11 @@ return {
     end,
   },
 
+  -- telescope
   {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.2",
-    dependencies = {
+    dependencies =  {
       "nvim-lua/plenary.nvim",
     },
     cmd = "Telescope",

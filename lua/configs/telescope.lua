@@ -31,7 +31,7 @@ local options = {
       preview_cutoff = 120,
     },
     file_sorter = require("telescope.sorters").get_fuzzy_file,
-    file_ignore_patterns = { ".git/", ".cache", "%.o", "%.a", "%.out", "%.pdf", "%.zip", "%.mp4", "%.mkv" },
+    file_ignore_patterns = { ".git", ".cache", "%.o", "%.a", "%.out", "%.pdf", "%.zip", "%.mp4", "%.mkv" },
     generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
     path_display = { "truncate" },
     winblend = 0,

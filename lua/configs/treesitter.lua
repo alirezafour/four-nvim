@@ -1,32 +1,27 @@
 local options = {
-  compiler = { "cl", "clang" },
+  compiler = { "clang" },
+  autotag = { enable = true },
+  context_commentstring = { enable = true, enable_autocmd = false },
   ensure_installed = {
     "rust",
     "vimdoc",
     "vim",
     "lua",
     "bash",
-    "dockfile",
-    "doxigen",
     "html",
     "css",
     "c",
     "cpp",
     "python",
     "cmake",
-    "git_config",
-    "git_attributes",
-    "gitignore",
-    "gitcommit",
-    "git_rebase",
     "json",
   },
 
   highlight = {
     enable = true,
-    use_languagetree = true,
+    disable = function(_, bufnr) return vim.b[bufnr].large_buf end,
   },
-
+  incremental_selection = { enable = true },
   indent = { enable = true },
 }
 
