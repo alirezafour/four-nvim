@@ -18,6 +18,8 @@ maps.i["<C-k>"] = { "<Up>", desc = "Move up" }
 -- terminal
 maps.n["<A-t>"] = { function () require("nvterm.terminal").toggle('horizontal') end, desc = "toggle horizental terminal" }
 maps.t["<A-t>"] = { function () require("nvterm.terminal").toggle('horizontal') end, desc = "toggle horizental terminal" }
+maps.n["<A-h>"] = { function () require("nvterm.terminal").toggle('horizontal') end, desc = "toggle horizental terminal" }
+maps.t["<A-h>"] = { function () require("nvterm.terminal").toggle('horizontal') end, desc = "toggle horizental terminal" }
 maps.n["<A-v>"] = { function () require("nvterm.terminal").toggle('vertical')   end, desc = "toggle vertical terminal" }
 maps.t["<A-v>"] = { function () require("nvterm.terminal").toggle('vertical')   end, desc = "toggle vertical terminal" }
 
