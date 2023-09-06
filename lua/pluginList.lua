@@ -15,6 +15,17 @@ return {
     end,
   },
 
+  -- terminal
+  {
+    "NvChad/nvterm",
+    opts = function()
+      return require "configs/term"
+    end,
+    config = function(opts)
+      require("nvterm").setup(opts)
+    end,
+  },
+
   -- status bar on buttom
   {
     "nvim-lualine/lualine.nvim",
@@ -56,9 +67,9 @@ return {
       vim.api.nvim_create_user_command("MasonInstallAll", function()
         vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
       end, {})
-  --
+      --
       vim.g.mason_binaries_list = opts.ensure_installed
-     end,
+    end,
   },
 
   -- -- lspconfig
@@ -122,12 +133,12 @@ return {
   {
     "numToStr/Comment.nvim",
     keys = {
-      { "gcc", mode = "n", desc = "Comment toggle current line" },
-      { "gc", mode = { "n", "o" }, desc = "Comment toggle linewise" },
-      { "gc", mode = "x", desc = "Comment toggle linewise (visual)" },
-      { "gbc", mode = "n", desc = "Comment toggle current block" },
-      { "gb", mode = { "n", "o" }, desc = "Comment toggle blockwise" },
-      { "gb", mode = "x", desc = "Comment toggle blockwise (visual)" },
+      { "gcc", mode = "n",          desc = "Comment toggle current line" },
+      { "gc",  mode = { "n", "o" }, desc = "Comment toggle linewise" },
+      { "gc",  mode = "x",          desc = "Comment toggle linewise (visual)" },
+      { "gbc", mode = "n",          desc = "Comment toggle current block" },
+      { "gb",  mode = { "n", "o" }, desc = "Comment toggle blockwise" },
+      { "gb",  mode = "x",          desc = "Comment toggle blockwise (visual)" },
     },
     config = function(_, opts)
       require("Comment").setup(opts)
@@ -150,7 +161,7 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.2",
-    dependencies =  {
+    dependencies = {
       "nvim-lua/plenary.nvim",
     },
     cmd = "Telescope",
@@ -180,4 +191,3 @@ return {
     end,
   },
 }
-

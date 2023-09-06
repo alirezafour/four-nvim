@@ -15,6 +15,12 @@ maps.i["<C-l>"] = { "<Right>", desc = "Move right" }
 maps.i["<C-j>"] = { "<Down>", desc = "Move down" }
 maps.i["<C-k>"] = { "<Up>", desc = "Move up" }
 
+-- terminal
+maps.n["<A-t>"] = { function () require("nvterm.terminal").toggle('horizontal') end, desc = "toggle horizental terminal" }
+maps.t["<A-t>"] = { function () require("nvterm.terminal").toggle('horizontal') end, desc = "toggle horizental terminal" }
+maps.n["<A-v>"] = { function () require("nvterm.terminal").toggle('vertical')   end, desc = "toggle vertical terminal" }
+maps.t["<A-v>"] = { function () require("nvterm.terminal").toggle('vertical')   end, desc = "toggle vertical terminal" }
+
 -- switch between windows
 maps.n["<C-h>"] = { "<c-w>h", desc = "Window left" }
 maps.n["<C-l>"] = { "<c-w>l", desc = "Window right" }
