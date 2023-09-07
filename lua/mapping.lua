@@ -30,13 +30,6 @@ maps.n["<C-j>"] = { "<c-w>j", desc = "Window down" }
 maps.n["<C-k>"] = { "<c-w>k", desc = "Window up" }
 
   -- LSP
-maps.n["<leader>cr"] = { "<cmd> lua vim.lsp.buf.rename <cr>", desc = "lsp rename", }
-maps.n["<leader>ca"] = { "<cmd> lua vim.lsp.buf.code_action <cr>", desc = "lsp code action" }
-maps.n["<leader>cD"] = { "<cmd> lua vim.lsp.buf.type_definition <cr>", desc = "lsp type definition" }
-maps.n["gd"] = { "<cmd> lua vim.lsp.buf.definition <cr>", desc = "lsp go to definition" }
-maps.n["gD"] = { "<cmd> lua vim.lsp.buf.declaration <cr>", desc = "lsp go to declaration" }
-maps.n["gi"] = { "<cmd> lua vim.lsp.buf.implementation <cr>", desc = "lsp implementation" }
-maps.n["K"] = { "<cmd> lua vim.lsp.buf.hover <cr>", desc = "lsp Hover" }
 
 -- Telescope
 maps.n["<leader>ff"] = { "<cmd> Telescope find_files <cr>", desc = "find files in current root" }

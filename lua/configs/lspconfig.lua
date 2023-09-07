@@ -7,6 +7,13 @@ M.on_attach = function(_, bufnr)
     vim.keymap.set('n', key, action, { buffer = bufnr })
   end
 
+  key("<leader>cr", vim.lsp.buf.rename)
+  key("<leader>ca", vim.lsp.buf.code_action)
+  key("<leader>cD", vim.lsp.buf.type_definition)
+  key("gd", vim.lsp.buf.definition)
+  key("gD", vim.lsp.buf.declaration)
+  key("gi", vim.lsp.buf.implementation)
+  key("K", vim.lsp.buf.hover)
 
   -- formating
   vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
