@@ -18,6 +18,7 @@ return {
   -- terminal
   {
     "NvChad/nvterm",
+    event = "VeryLazy",
     opts = function()
       return require "configs/term"
     end,
@@ -84,13 +85,14 @@ return {
   -- -- lsp stuff
   {
     "williamboman/mason.nvim",
+    lazy = true,
     cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUninstall", "MasonUninstallAll", "MasonLog" },
     opts = function()
       return require "configs.mason"
     end,
     config = function(_, opts)
       require("mason").setup(opts)
-      -- custom nvchad cmd to install all mason binaries listed
+      -- custom cmd to install all mason binaries listed
       vim.api.nvim_create_user_command("MasonInstallAll", function()
         vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
       end, {})
@@ -116,6 +118,7 @@ return {
       {
         -- snippet plugin
         "L3MON4D3/LuaSnip",
+        event = "BufRead",
         dependencies = "rafamadriz/friendly-snippets",
         opts = { history = true, updateevents = "TextChanged,TextChangedI" },
         config = function(_, opts)
@@ -126,6 +129,7 @@ return {
       -- autopairing of (){}[] etc
       {
         "windwp/nvim-autopairs",
+        event = "BufRead",
         opts = {
           fast_wrap = {},
           disable_filetype = { "TelescopePrompt", "vim" },
@@ -159,6 +163,7 @@ return {
   -- comment
   {
     "numToStr/Comment.nvim",
+    event = "BufRead",
     keys = {
       { "gcc", mode = "n",          desc = "Comment toggle current line" },
       { "gc",  mode = { "n", "o" }, desc = "Comment toggle linewise" },
@@ -211,6 +216,7 @@ return {
   -- Only load whichkey after all the gui
   {
     "folke/which-key.nvim",
+    lazy = true,
     keys = { "<leader>", "<c-r>", '"', "'", "`", "c", "v", "g" },
     cmd = "WhichKey",
     config = function(_, opts)
