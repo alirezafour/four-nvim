@@ -11,5 +11,30 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
-require("lazy").setup("pluginList")
+require("lazy").setup({
+spec = {
+    { import = "plugins" },
+    { import = "plugins/lsp"},
+  },
+  defaults = {
+    lazy = false,
+    -- It's recommended to leave version=false for now, since a lot the plugin that support versioning,
+    version = false, -- always use the latest git commit
+  },
+  checker = { enabled = true }, -- automatically check for plugin updates
+  performance = {
+    rtp = {
+      -- disable some rtp plugins
+      disabled_plugins = {
+        "gzip",
+        -- "matchit",
+        -- "matchparen",
+        -- "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
+})
