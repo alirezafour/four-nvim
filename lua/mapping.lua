@@ -1,10 +1,16 @@
 local utility = require "utility"
 local maps = utility.empty_map_table()
+
 maps.n[";"] = { ":" }
 maps.i["jk"] = { "<Esc>", desc = "exit normal mode" }
 
 -- Nvim-tree
 maps.n["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", desc = "display nvim tree" }
+
+
+-- split screen
+maps.n["<leader><leader>j"] = { "<cmd> split <CR>", desc = "split horizontal" }
+maps.n["<leader><leader>l"] = { "<cmd> vsplit <CR>", desc = "split vertical" }
 
 -- clear highlight when go to normal mode
 maps.n["<Esc>"] = { "<cmd> noh <cr>", desc = "Clear highlights" }
