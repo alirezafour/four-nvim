@@ -29,6 +29,8 @@ return {
   "williamboman/mason.nvim",
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
+    "mfussenegger/nvim-dap",
+    "jay-babu/mason-nvim-dap.nvim",
   },
   cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUninstall", "MasonUninstallAll", "MasonLog" },
   config = function()
@@ -62,17 +64,16 @@ return {
       -- mason-lspconfig config
       ensure_installed = {
         "pyright",
-
         "clangd",
         "lua_ls",
-        "html",
         "cmake",
-        "cssls",
-        "tsserver",
       },
       -- auto install missing
       automatic_installation = true,
     })
+
+    require("mason-nvim-dap").setup()
+
     -- custom cmd to install all mason binaries listed
     vim.api.nvim_create_user_command("MasonInstallAll", function()
       vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))

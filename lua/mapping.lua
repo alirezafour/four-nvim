@@ -7,6 +7,9 @@ maps.i["jk"] = { "<Esc>", desc = "exit normal mode" }
 -- Nvim-tree
 maps.n["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", desc = "display nvim tree" }
 
+-- dap
+maps.n["<leader>db"] = { "<cmd> DapToggleBreakpoint <CR>", desc = "dap add break point" }
+maps.n["<leader>dr"] = { "<cmd> DapContinue <CR>", desc = "dap start or continue debugger" }
 
 -- split screen
 maps.n["<leader><leader>j"] = { "<cmd> split <CR>", desc = "split horizontal" }
