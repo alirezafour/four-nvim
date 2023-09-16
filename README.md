@@ -13,4 +13,4 @@ done.
 ### adding or editing plugins
 every plugins are seperatly confugues in `lua/plugins`  
 - for deleting plugins simply remove the lua file in `lua/plugins` and run Lazy and Clean  
-- for adding plugins create new lua file in plugins and return the plugin name and structure table  
+- for adding plugins create new lua file in plugins and return plugin name in a table
