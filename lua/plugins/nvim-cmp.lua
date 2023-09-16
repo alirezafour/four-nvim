@@ -27,8 +27,7 @@ return {
           callback = function()
             if
                 require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
-                and not require("luasnip").session.jump_active
-            then
+                and not require("luasnip").session.jump_active then
               require("luasnip").unlink_current()
             end
           end,
@@ -76,13 +75,13 @@ return {
     end
     require("cmp").setup({
       completion = {
-        completeopt = "menu,menuone",
+        completeopt = "menu,menuone,noselect",
       },
 
       window = {
         completion = {
           winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel",
-          scrollbar = false,
+          scrollbar = true,
         },
         documentation = {
           border = border "CmpDocBorder",
@@ -106,7 +105,7 @@ return {
         ["<C-e>"] = cmp.mapping.close(),
         ["<CR>"] = cmp.mapping.confirm {
           behavior = cmp.ConfirmBehavior.Insert,
-          select = true,
+          select = false,
         },
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
