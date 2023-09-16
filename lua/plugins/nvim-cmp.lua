@@ -8,7 +8,7 @@ return {
       event = "BufRead",
       dependencies = "rafamadriz/friendly-snippets",
       opts = { history = true, updateevents = "TextChanged,TextChangedI" },
-      config = function(_, opts)
+      config = function()
         require("luasnip").config.set_config()
 
         -- vscode format
@@ -80,7 +80,7 @@ return {
 
       window = {
         completion = {
-          winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel",
+          -- winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel",
           scrollbar = true,
         },
         documentation = {

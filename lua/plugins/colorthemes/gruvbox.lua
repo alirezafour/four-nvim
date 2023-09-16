@@ -3,9 +3,6 @@ return {
   "ellisonleao/gruvbox.nvim",
   lazy = false,
   priority = 1000,
-  -- opts = function()
-  --   return require "configs/gruvbox"
-  -- end,
   config = function()
     vim.o.background = "dark"
     require("gruvbox").setup({
@@ -25,7 +22,7 @@ return {
       invert_tabline = false,
       invert_intend_guides = false,
       inverse = true, -- invert background for search, diffs, statuslines and errors
-      contrast = "", -- can be "hard", "soft" or empty string
+      contrast = "",  -- can be "hard", "soft" or empty string
       palette_overrides = {},
       overrides = {},
       dim_inactive = false,
