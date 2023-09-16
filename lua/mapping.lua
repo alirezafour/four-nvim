@@ -15,6 +15,9 @@ maps.n["<leader>dr"] = { "<cmd> DapContinue <CR>", desc = "dap start or continue
 maps.n["<leader><leader>j"] = { "<cmd> split <CR>", desc = "split horizontal" }
 maps.n["<leader><leader>l"] = { "<cmd> vsplit <CR>", desc = "split vertical" }
 
+-- negen
+maps.n["<Leader>nf"] = { ":lua require('neogen').generate()<CR>", desc = "neogen" }
+
 -- clear highlight when go to normal mode
 maps.n["<Esc>"] = { "<cmd> noh <cr>", desc = "Clear highlights" }
 
