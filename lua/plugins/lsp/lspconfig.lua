@@ -38,14 +38,14 @@ return {
       opts.desc = "telescope buffer diagnostics"
       key("n", "<leader>gD", "<cmd> Telescope diagnostics bufnr=0 <CR>", opts)
       opts.desc = "lsp go previous diagnostic"
-      key("n", "g[d", vim.diagnostic.goto_prev, opts)
+      key("n", "g[", vim.diagnostic.goto_prev, opts)
       opts.desc = "lsp go next diagnostic"
-      key("n", "g]d", vim.diagnostic.goto_next, opts)
+      key("n", "g]", vim.diagnostic.goto_next, opts)
 
       opts.desc = "lsp hover"
       key("n", "K", vim.lsp.buf.hover, opts)
       opts.desc = "reset lsp"
-      key("n", "<leader>cR", "<cmd> LspRestart <CR>", opts)
+      key("n", "<leader>gR", "<cmd> LspRestart <CR>", opts)
 
       -- formating
       vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
