@@ -27,18 +27,18 @@ return {
       key("n", "gD", vim.lsp.buf.declaration, opts)
       opts.desc = "lsp implementation"
       key("n", "gi", vim.lsp.buf.implementation, opts)
-      opts.desc = "show lsp references in telescope"
-      key("n", "gr", require("telescope.builtin").lsp_references(), opts)
-      opts.desc = "show lsp definition in telescope"
-      key("n", "gt", "<cmd> Telescope lsp_type_definitions <CR>", opts)
-      opts.desc = "lsp jump to implementation"
-      key("n", "gI", require("telescope.builtin").lsp_implementations(), opts)
-      opts.desc = "lsp find document symbols"
-      key("n", "<leader>fds", require("telescope.builtin").lsp_document_symbols(), opts)
-      opts.desc = "lsp find workspace symbols"
-      key("n", "<leader>fws", require("telescope.builtin").lsp_workspace_symbols(), opts)
-      opts.desc = "lsp find workspace dynamic symbols"
-      key("n", "<leader>fwds", require("telescope.builtin").lsp_dynamic_workspace_symbols(), opts)
+      -- opts.desc = "show lsp references in telescope"
+      -- key("n", "gr", require("telescope.builtin").lsp_references(), opts)
+      -- opts.desc = "show lsp definition in telescope"
+      -- key("n", "gt", "<cmd> Telescope lsp_type_definitions <CR>", opts)
+      -- opts.desc = "lsp jump to implementation"
+      -- key("n", "gI", require("telescope.builtin").lsp_implementations(), opts)
+      -- opts.desc = "lsp find document symbols"
+      -- key("n", "<leader>fds", require("telescope.builtin").lsp_document_symbols(), opts)
+      -- opts.desc = "lsp find workspace symbols"
+      -- key("n", "<leader>fws", require("telescope.builtin").lsp_workspace_symbols(), opts)
+      -- opts.desc = "lsp find workspace dynamic symbols"
+      -- key("n", "<leader>fwds", require("telescope.builtin").lsp_dynamic_workspace_symbols(), opts)
 
       -- diagnostic
       opts.desc = "lsp show line diagnostics"
