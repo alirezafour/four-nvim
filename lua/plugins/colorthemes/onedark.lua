@@ -5,7 +5,7 @@ return {
   config = function()
     vim.o.background = "dark"
     require("onedark").setup {
-      style = "warmer",
+      style = "darker",
     }
     require("onedark").load()
   end,
