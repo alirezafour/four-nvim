@@ -2,7 +2,7 @@ local utility = require "utility"
 local maps = utility.empty_map_table()
 
 maps.n[";"] = { ":" }
-maps.i["jk"] = { "<Esc>", desc = "exit normal mode" }
+maps.i["jj"] = { "<Esc>", desc = "exit normal mode" }
 
 -- Nvim-tree
 maps.n["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", desc = "display nvim tree" }
