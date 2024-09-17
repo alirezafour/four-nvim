@@ -48,6 +48,7 @@ maps.n["<leader>ff"] = { "<cmd> Telescope find_files <cr>", desc = "find files i
 maps.n["<leader>fg"] = { "<cmd> Telescope live_grep <cr>", desc = "live group" }
 maps.n["<leader>fb"] = { "<cmd> Telescope buffers <cr>", desc = "find in buffers" }
 maps.n["<leader>fh"] = { "<cmd> Telescope help_tags <cr>", desc = "show help tags" }
+maps.n["<leader>fd"] = { "<cmd> Telescope diagnostics <cr>", desc = "show diagnostics" }
 
 -- Comment
 maps.n["<leader>/"] = {
