@@ -20,6 +20,10 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.mouse = "a"
 
+-- scrolling
+opt.scrolloff = 4
+opt.sidescrolloff = 4
+
 -- Numbers
 opt.number = true
 opt.relativenumber = true
