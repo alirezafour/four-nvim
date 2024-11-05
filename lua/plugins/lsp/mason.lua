@@ -12,6 +12,7 @@ local opts = {
     "clangd",
     "clang-format",
     "cmake-language-server",
+    "codelldb",
 
     -- rust
     "rust-analyzer",
@@ -32,6 +33,7 @@ return {
     "mfussenegger/nvim-dap",
     "jay-babu/mason-nvim-dap.nvim",
   },
+  event = "VeryLazy",
   cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUninstall", "MasonUninstallAll", "MasonLog" },
   config = function()
     require("mason").setup({
@@ -61,13 +63,6 @@ return {
     })
 
     require("mason-lspconfig").setup({
-      -- mason-lspconfig config
-      ensure_installed = {
-        "pyright",
-        "clangd",
-        "lua_ls",
-        "cmake",
-      },
       -- auto install missing
       automatic_installation = true,
     })

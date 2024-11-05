@@ -26,6 +26,10 @@ return {
           "python",
           "cmake",
           "json",
+          "markdown",
+          "markdown_inline",
+          "yaml",
+          "toml",
         },
 
         highlight = {
