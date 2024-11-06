@@ -84,18 +84,19 @@ return {
     }
 
     require("lspconfig").clangd.setup {
+      cmd = { "clangd", "--background-index", "--header-insertion=iwyu", "--header-insertion-decorators" },
       on_attach = function(client, bufnr)
         local opts = { buffer = bufnr, noremap = true, silent = true }
         local key = function(mode, key, action, keyopts)
           vim.keymap.set(mode, key, action, keyopts)
         end
         on_attach(client, bufnr)
-        key("n", "<A-o>", "<cmd> ClangdSwitchSourceHeader <CR>", opts)
+        key("n", "go", "<cmd> ClangdSwitchSourceHeader <CR>", opts)
       end,
       capabilities = capabilities,
     }
 
-    local servers = { "html", "cssls", "tsserver", "cmake", "rust_analyzer" }
+    local servers = { "html", "cssls", "cmake", "rust_analyzer" }
     for _, lsp in ipairs(servers) do
       require("lspconfig")[lsp].setup {
         on_attach = on_attach,

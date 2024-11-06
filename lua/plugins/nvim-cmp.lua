@@ -48,18 +48,35 @@ return {
     local cmp = require("cmp")
     local luasnip = require("luasnip")
 
+    local kind_icons = {
+      Text = '󰉿',
+      Method = 'm',
+      Function = '󰊕',
+      Constructor = '',
+      Field = '',
+      Variable = '󰆧',
+      Class = '󰌗',
+      Interface = '',
+      Module = '',
+      Property = '',
+      Unit = '',
+      Value = '󰎠',
+      Enum = '',
+      Keyword = '󰌋',
+      Snippet = '',
+      Color = '󰏘',
+      File = '󰈙',
+      Reference = '',
+      Folder = '󰉋',
+      EnumMember = '',
+      Constant = '󰇽',
+      Struct = '',
+      Event = '',
+      Operator = '󰆕',
+      TypeParameter = '󰊄',
+    }
     require("luasnip.loaders.from_vscode").lazy_load()
     luasnip.config.setup {}
-
-    local formatting_style = {
-
-      -- default fields order i.e completion word + item.kind + item.kind icons
-      fields = { "abbr", "kind", "menu" },
-
-      format = function(_, item)
-        return item
-      end,
-    }
 
     local function border(hl_name)
       return {
@@ -76,6 +93,17 @@ return {
     require("cmp").setup({
       completion = {
         completeopt = "menu,menuone,noselect",
+      },
+      sorting ={
+        comparators = {
+         cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            cmp.config.compare.recently_used,
+            cmp.config.compare.kind,
+            cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+            cmp.config.compare.order,
+        },
       },
 
       window = {
@@ -94,10 +122,25 @@ return {
         end,
       },
 
-      formatting = formatting_style,
+      formatting = {
+        fields = { "kind", "abbr", "menu" },
+        format = function(entry, vim_item)
+          -- Kind icons
+          vim_item.kind = string.format("%s", kind_icons[vim_item.kind]) -- This concatonates the icons with the name of the item kind
+          -- Source
+          vim_item.menu = ({
+            nvim_lsp = "[LSP]",
+            luasnip = "[Snippet]",
+            buffer = "[Buffer]",
+            path = "[Path]",
+          })[entry.source.name]
+          return vim_item
+        end,
+      },
 
       mapping = {
         ["<C-p>"] = cmp.mapping.select_prev_item(),
+        ["<C-S-n>"] = cmp.mapping.select_prev_item(),
         ["<C-n>"] = cmp.mapping.select_next_item(),
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
@@ -110,9 +153,9 @@ return {
       },
       sources = {
         { name = "nvim_lsp" },
+        -- { name = "nvim_lua" },
         { name = "luasnip" },
         { name = "buffer" },
-        { name = "nvim_lua" },
         { name = "path" },
       },
 

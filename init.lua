@@ -12,7 +12,7 @@ function FormatBuffer()
   end
 end
 
-vim.cmd('autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.vert,*.frag,*.mcpp,*mhpp,*ixx lua FormatBuffer()')
+vim.cmd('autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.mcpp,*.mhpp,*.ixx,*.cppm,*.hppm lua FormatBuffer()')
 
 
 -- add binaries installed by mason.nvim to path
