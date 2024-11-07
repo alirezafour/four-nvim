@@ -1,11 +1,13 @@
 return {
   "hrsh7th/nvim-cmp",
   event = "InsertEnter",
+  lazy = true,
   dependencies = {
     {
       -- snippet plugin
       "L3MON4D3/LuaSnip",
-      event = "BufRead",
+      event = "BufReadPost",
+      lazy = true,
       dependencies = "rafamadriz/friendly-snippets",
       opts = { history = true, updateevents = "TextChanged,TextChangedI" },
       config = function()
@@ -94,17 +96,17 @@ return {
       completion = {
         completeopt = "menu,menuone,noselect",
       },
-      sorting ={
-        comparators = {
-         cmp.config.compare.offset,
-            cmp.config.compare.exact,
-            cmp.config.compare.recently_used,
-            cmp.config.compare.kind,
-            cmp.config.compare.sort_text,
-            cmp.config.compare.length,
-            cmp.config.compare.order,
-        },
-      },
+      -- sorting ={
+      --   comparators = {
+      --     cmp.config.compare.recently_used,
+      --     cmp.config.compare.offset,
+      --     cmp.config.compare.exact,
+      --     cmp.config.compare.kind,
+      --     cmp.config.compare.sort_text,
+      --     cmp.config.compare.length,
+      --     cmp.config.compare.order,
+      --   },
+      -- },
 
       window = {
         completion = {
@@ -129,10 +131,10 @@ return {
           vim_item.kind = string.format("%s", kind_icons[vim_item.kind]) -- This concatonates the icons with the name of the item kind
           -- Source
           vim_item.menu = ({
-            nvim_lsp = "[LSP]",
-            luasnip = "[Snippet]",
-            buffer = "[Buffer]",
-            path = "[Path]",
+            nvim_lsp = kind_icons.Event,
+            luasnip = kind_icons.Snippet,
+            buffer = kind_icons.Text,
+            path = kind_icons.Struct,
           })[entry.source.name]
           return vim_item
         end,

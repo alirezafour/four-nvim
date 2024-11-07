@@ -34,6 +34,7 @@ return {
     "jay-babu/mason-nvim-dap.nvim",
   },
   event = "VeryLazy",
+  lazy = true,
   cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUninstall", "MasonUninstallAll", "MasonLog" },
   config = function()
     require("mason").setup({

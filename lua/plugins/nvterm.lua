@@ -1,6 +1,8 @@
 return {
   -- terminal
   "NvChad/nvterm",
+  event = "VeryLazy",
+  lazy = true,
   -- opts = function()
   --   return require "configs/term"
   -- end,

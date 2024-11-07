@@ -10,7 +10,8 @@ return
       "jay-babu/mason-nvim-dap.nvim",
     },
   },
-  event = "VeryLazy",
+  event = "LspAttach",
+  lazy = true,
   config = function()
     local dap = require('dap')
     local dapui = require('dapui')
@@ -32,7 +33,7 @@ return
       type = "server",
       port = "${port}",
       executable = {
-      command = vim.fn.stdpath("data") .. "/mason/bin/codelldb",
+        command = vim.fn.stdpath("data") .. "/mason/bin/codelldb",
         args = {"--port", "${port}"},
       },
     }

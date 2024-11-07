@@ -165,8 +165,8 @@ return {
     end
     local servers = {
       clangd = {
-        filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cppx', 'cc', 'cxx', 'cppm', 'h', 'hpp', 'hppx', 'hh', 'hppm' },
-        cmd = { 'clangd', '--background-index', '--clang-tidy', '--header-insertion=never' },
+        filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cppx', 'cc', 'cxx', 'cppm', 'h', 'hpp', 'hppx', 'hh', 'hppm', 'ixx' },
+        cmd = { 'clangd', '--background-index', '--header-insertion=never' },
         init_options = {
           fallbackFlags = { '-std=c++23', },
         },
