@@ -46,7 +46,7 @@ return {
     --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
     --    function will be executed to configure the current buffer
     vim.api.nvim_create_autocmd('LspAttach', {
-      group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
+      group = vim.api.nvim_create_augroup('four-lsp-attach', { clear = true }),
       callback = function(event)
         -- NOTE: Remember that Lua is a real programming language, and as such it is possible
         -- to define small helper and utility functions so you don't have to repeat yourself.
@@ -65,19 +65,19 @@ return {
         -- Jump to the definition of the word under your cursor.
         --  This is where a variable was first declared, or where a function is defined, etc.
         --  To jump back, press <C-t>.
-        map('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+        map('gd', function() vim.lsp.buf.definition() end, '[G]oto [D]efinition')
 
         -- Find references for the word under your cursor.
-        map('gr', vim.lsp.buf.references, '[G]oto [R]eferences')
+        map('gr', function() vim.lsp.buf.references() end, '[G]oto [R]eferences')
 
         -- Jump to the implementation of the word under your cursor.
         --  Useful when your language has ways of declaring types without an actual implementation.
-        map('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+        map('gI', function() vim.lsp.buf.implementation() end, '[G]oto [I]mplementation')
 
         -- Jump to the type of the word under your cursor.
         --  Useful when you're not sure what type a variable is and you want to see
         --  the definition of its *type*, not where it was *defined*.
-        map('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
+        map('<leader>D', function() vim.lsp.buf.type_definition() end, 'Type [D]efinition')
 
         -- Fuzzy find all the symbols in your current document.
         --  Symbols are things like variables, functions, types, etc.
@@ -89,18 +89,15 @@ return {
 
         -- Rename the variable under your cursor.
         --  Most Language Servers support renaming across files, etc.
-        map('<leader>gr', vim.lsp.buf.rename, '[R]ename')
+        map('<leader>gr', function() vim.lsp.buf.rename() end, '[R]ename')
 
         -- Execute a code action, usually your cursor needs to be on top of an error
         -- or a suggestion from your LSP for this to activate.
-        map('<leader>ga', vim.lsp.buf.code_action, 'Code [A]ction', { 'n', 'x' })
+        map('<leader>ga', function() vim.lsp.buf.code_action() end, 'Code [A]ction', { 'n', 'x' })
 
         -- WARN: This is not Goto Definition, this is Goto Declaration.
         --  For example, in C this would take you to the header.
-        map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-
-        -- TODO: mapping for only Clangd
-        map('go', '<cmd>ClangdSwitchSourceHeader<cr>', 'ClangdSwitchSourceHeader', {'n', 'v', 'i'})
+        map('gD', function() vim.lsp.buf.declaration() end, '[G]oto [D]eclaration')
 
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
@@ -109,7 +106,7 @@ return {
         -- When you move your cursor, the highlights will be cleared (the second autocommand).
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-          local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
+          local highlight_augroup = vim.api.nvim_create_augroup('four-lsp-highlight', { clear = false })
           vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
             buffer = event.buf,
             group = highlight_augroup,
@@ -123,13 +120,19 @@ return {
           })
 
           vim.api.nvim_create_autocmd('LspDetach', {
-            group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
+            group = vim.api.nvim_create_augroup('four-lsp-detach', { clear = true }),
             callback = function(event2)
               vim.lsp.buf.clear_references()
-              vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
+              vim.api.nvim_clear_autocmds { group = 'four-lsp-highlight', buffer = event2.buf }
             end,
           })
         end
+
+        -- diagnostic not update during insert
+        vim.diagnostic.config({
+          update_in_insert = false, -- Disable updates in insert mode if causing issues
+          severity_sort = true,
+        })
 
         -- The following code creates a keymap to toggle inlay hints in your
         -- code, if the language server you are using supports them
@@ -149,6 +152,23 @@ return {
     --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+    capabilities.textDocument.completion.completionItem = {
+      documentationFormat = { "markdown", "plaintext" },
+      snippetSupport = true,
+      preselectSupport = true,
+      insertReplaceSupport = true,
+      labelDetailsSupport = true,
+      deprecatedSupport = true,
+      commitCharactersSupport = true,
+      tagSupport = { valueSet = { 1 } },
+      resolveSupport = {
+        properties = {
+          "documentation",
+          "detail",
+          "additionalTextEdits",
+        },
+      },
+    }
 
     -- Enable the following language servers
     --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -159,17 +179,25 @@ return {
     --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
     --  - settings (table): Override the default settings passed when initializing the server.
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-    local function keymap(keys, func, desc, mode)
-      mode = mode or 'n'
-      vim.keymap.set(mode, keys, func, { desc = 'LSP: ' .. desc })
-    end
     local servers = {
       clangd = {
         filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cppx', 'cc', 'cxx', 'cppm', 'h', 'hpp', 'hppx', 'hh', 'hppm', 'ixx' },
-        cmd = { 'clangd', '--background-index', '--header-insertion=never' },
+        cmd = {
+          "clangd",
+          "--background-index",
+          "--header-insertion=iwyu",
+        },
         init_options = {
           fallbackFlags = { '-std=c++23', },
         },
+        on_attach = function(_, bufnr)
+          local opts = { buffer = bufnr, noremap = true, silent = true }
+          local key = function(mode, key, action, keyopts)
+            vim.keymap.set(mode, key, action, keyopts)
+          end
+          key({ 'n', 'v' }, "go", "<cmd> ClangdSwitchSourceHeader <CR>", opts)
+        end,
+        capabilities = capabilities,
       },
       cmake = {},
       -- gopls = {},
