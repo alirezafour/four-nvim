@@ -1,0 +1,6 @@
+{
+    "diagnostics.globals": [
+        "clang_build",
+        "camke_build"
+    ]
+}
