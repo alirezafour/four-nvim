@@ -15,6 +15,7 @@ require("lazy").setup({
 spec = {
     { import = "plugins/colorthemes"},
     { import = "plugins" },
+    { import = "plugins/AI" },
   },
   defaults = {
     lazy = false,
