@@ -277,6 +277,8 @@ return {
       'stylua', -- Used to format Lua code
       'codelldb',-- Used to debug C/C++ code
       'clang-format', -- Used to format C/C++ code
+      'rust_analyzer', -- Used to debug Rust code
+      'pyright', -- Used to debug Python code
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

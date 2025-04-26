@@ -31,7 +31,7 @@ return {
     },
     ollama = {
       endpoint = "http://127.0.0.1:11434", -- Note that there is no /v1 at the end.
-      model = "llama3.1:8b",
+      model = "qwen2.5-coder:14b",
     },
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
