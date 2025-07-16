@@ -1,6 +1,8 @@
 return
 {
   "rcarriga/nvim-dap-ui",
+  event = "LspAttach",
+  lazy = true,
   dependencies = {
     {
       "mfussenegger/nvim-dap",
@@ -10,8 +12,6 @@ return
       "jay-babu/mason-nvim-dap.nvim",
     },
   },
-  event = "LspAttach",
-  lazy = true,
   config = function()
     local dap = require('dap')
     local dapui = require('dapui')

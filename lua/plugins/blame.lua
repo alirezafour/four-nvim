@@ -1,6 +1,7 @@
 return{
   "FabijanZulj/blame.nvim",
-  event = "BufEnter",
+  event = {"VeryLazy"},
+  lazy = true,
   config = function()
     require('blame').setup {
       date_format = "%Y.%m",

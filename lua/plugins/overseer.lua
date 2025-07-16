@@ -1,21 +1,3 @@
--- clang++ build
--- local clang_build = {
---   name = "clang++ build",
---   builder = function()
---     -- Full path to current file (see :help expand())
---     local file = vim.fn.expand("%:p")
---     return {
---       cmd = { "clang++", "-g", "-std=c++23", "-Wall", "-Wextra", file .. ".o" },
---       args = { file },
---       components = { { "on_output_quickfix", open = true }, "default" },
---     }
---   end,
---   condition = {
---     filetype = { "cpp" },
---   },
--- }
-
-
 local camke_build = {
   name = "cmake build",
   builder = function()
@@ -33,6 +15,8 @@ local camke_build = {
 -- Overseer
 return {
   'stevearc/overseer.nvim',
+  event = {"LspAttach"},
+  lazy = true,
   opts = {},
   config = function()
     require("overseer").add_template_hook({
