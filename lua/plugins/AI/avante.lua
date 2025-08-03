@@ -35,7 +35,7 @@ return {
       },
       gemini = {
         -- @see https://ai.google.dev/gemini-api/docs/models/gemini
-        model = "gemini-2.0-flash",
+        model = "gemini-2.5-flash",
         -- model = "gemini-1.5-flash",
         timeout = 30000, -- Timeout in milliseconds
         extra_request_body = {
