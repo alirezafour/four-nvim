@@ -5,7 +5,7 @@ maps.n[";"] = { ":" }
 maps.i["jj"] = { "<Esc>", desc = "exit normal mode" }
 
 -- Nvim-tree
-maps.n["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", desc = "display nvim tree" }
+-- maps.n["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", desc = "display nvim tree" }
 
 -- dap
 maps.n["<leader>db"] = { "<cmd> DapToggleBreakpoint <CR>", desc = "dap add break point" }
