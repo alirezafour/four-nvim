@@ -38,7 +38,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end, bufnr)
       end
       print("It suppert switchSourceHeader")
-      vim.keymap.set('n', 'go', switch_source_header, { silent = true })
+      vim.keymap.set('n', 'go', switch_source_header, { noremap = true, silent = true, desc = "switch Source/Header" })
     end
     if client:supports_method('textDocument/implementation') then
       -- Create a keymap for vim.lsp.buf.implementation ...
