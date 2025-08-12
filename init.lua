@@ -1,18 +1,19 @@
 require "options"
 require "plugin"
 require "mapping"
+require "lsp"
 
 -------------------------------------- autocmds ------------------------------------------
 -- auto formating for cpp files
-function FormatBuffer()
-  if vim.bo.modified and vim.fn.empty(vim.fn.findfile('.clang-format', vim.fn.expand('%:p:h') .. ';')) == 0 then
-    local cursor_pos = vim.fn.getpos('.')
-    vim.cmd('%!clang-format')
-    vim.fn.setpos('.', cursor_pos)
-  end
-end
+-- function FormatBuffer()
+--   if vim.bo.modified and vim.fn.empty(vim.fn.findfile('.clang-format', vim.fn.expand('%:p:h') .. ';')) == 0 then
+--     local cursor_pos = vim.fn.getpos('.')
+--     vim.cmd('%!clang-format')
+--     vim.fn.setpos('.', cursor_pos)
+--   end
+-- end
 
-vim.cmd('autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.mcpp,*.mhpp,*.ixx,*.cppm,*.hppm lua FormatBuffer()')
+-- vim.cmd('autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.mcpp,*.mhpp,*.ixx,*.cppm,*.hppm lua FormatBuffer()')
 
 
 -- add binaries installed by mason.nvim to path
@@ -28,6 +29,3 @@ autocmd("FileType", {
     vim.opt_local.buflisted = false
   end,
 })
-
-
-
